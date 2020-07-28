@@ -57,7 +57,9 @@ public class DeallocationChecker: NSObject {
         let rootParentViewController = viewController.dch_rootParentViewController
 
         // `UITabBarController` keeps a strong reference to view controllers that disappeared from screen. So, we don't have to check if they've been deallocated.
-        guard !rootParentViewController.isKind(of: UITabBarController.self) else {
+        // Similarly, so does `UISearchController`
+        guard !rootParentViewController.isKind(of: UITabBarController.self) &&
+                !rootParentViewController.isKind(of: UISearchController.self) else {
             return
         }
 
