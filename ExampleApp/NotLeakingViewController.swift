@@ -11,6 +11,13 @@ import DeallocationChecker
 
 class NotLeakingViewController: UIViewController {
 
+    override func viewDidLoad() {
+        let searchResultsController = storyboard?.instantiateViewController(
+            withIdentifier: String(describing: NotLeakingSearchResultsViewController.self))
+        navigationItem.searchController = UISearchController(searchResultsController: searchResultsController)
+        definesPresentationContext = true
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
